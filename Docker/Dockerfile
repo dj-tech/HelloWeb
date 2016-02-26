@@ -2,7 +2,7 @@ FROM phusion/passenger-ruby22:0.9.18
 
 # Set correct environment variables.
 ENV HOME /root
-
+VOLUME /data
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
 
@@ -26,7 +26,7 @@ RUN rake db:setup
 
 # New crontab:
 USER root
-RUN cp Docker/crontab /etc/crontab
+COPY crontab /etc/crontab
 
 # Pinw cron jobs:
 USER app
