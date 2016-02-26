@@ -5,6 +5,6 @@ Programs to dockerize and start a new instance of pinw
 
 ``` shell
 git clone https://github.com/AlgoLab/pinw-deploy.git
-cd bin
+cd pinw-deploy/bin
 ./deploy.sh
 ```
