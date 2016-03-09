@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Restart the application whenver we get a new version
+passenger-config restart-app /home/app/pinw
+

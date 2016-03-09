@@ -14,6 +14,7 @@ RUN rm -f /etc/service/nginx/down
 USER app
 WORKDIR /home/app
 RUN git clone https://github.com/AlgoLab/pinw
+COPY post-merge.hook /home/app/pinw/.git/hooks/post-merge
 RUN mkdir data
 WORKDIR /home/app/pinw
 ENV RACK_ENV production
