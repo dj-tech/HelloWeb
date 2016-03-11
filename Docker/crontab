@@ -13,3 +13,4 @@ MAILTO=none
 00 */2  * * *   root     dpkg --configure -a && apt-get -qq -f install && apt-get -qq update && apt-get -y -qq upgrade && apt-get -qq clean
 # Update pinw
 30 *  * * *   app  cd /home/app/pinw && git pull --all
+#32 *  * * *   root find /home/app/pinw/.git -cmin -30 && passenger-config restart-app /home/app/pinw
