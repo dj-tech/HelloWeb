@@ -16,6 +16,7 @@ WORKDIR /home/app
 RUN git clone https://github.com/AlgoLab/pinw
 COPY post-merge.hook /home/app/pinw/.git/hooks/post-merge
 RUN mkdir data
+VOLUME /home/app/data
 WORKDIR /home/app/pinw
 ENV RACK_ENV production
 
