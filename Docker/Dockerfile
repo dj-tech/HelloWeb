@@ -9,7 +9,19 @@ CMD ["/sbin/my_init"]
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
 
+# New crontab:
+USER root
+COPY crontab /etc/crontab
 
+# Add configuration to nginx:
+USER root
+RUN rm /etc/nginx/sites-enabled/default
+COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
+
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get clean
+COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 
 # Get PInW
 USER app
@@ -26,20 +38,8 @@ RUN bundle install
 USER app
 RUN rake db:setup
 
-# New crontab:
-USER root
-COPY crontab /etc/crontab
-
 # Pinw cron jobs:
 USER app
 RUN whenever -w
-
-# Add configuration to nginx:
-USER root
-RUN rm /etc/nginx/sites-enabled/default
-COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
-
-RUN apt-get clean
-COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 
 EXPOSE 80
