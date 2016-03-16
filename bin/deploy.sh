@@ -9,4 +9,5 @@ for cont in `docker ps -f name=pinw -q`
 do
     docker rm -f $cont
 done
+echo "Starting container pinw.${v} as $PINW_NAME"
 docker run -d -P -e $PINW_NAME  --name "pinw.${v}" pinw
