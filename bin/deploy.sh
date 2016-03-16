@@ -2,7 +2,7 @@
 set -e
 
 cd ~/pinw-deploy/Docker/
-v=`date +%F@%T`
+v=`date +%FH%H%M`
 
 docker build -t pinw .
 for cont in `docker ps -f name=pinw -q`
