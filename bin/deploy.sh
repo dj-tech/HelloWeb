@@ -10,4 +10,4 @@ do
     docker rm -f $cont
 done
 echo "Starting container pinw.${v} as $PINW_NAME"
-docker run -d -P -e $PINW_NAME  --name "pinw.${v}" pinw
+docker run -d -e VIRTUAL_HOST=$PINW_NAME -v /home/pinw/pinw-data:/data --name "pinw.${v}" pinw
