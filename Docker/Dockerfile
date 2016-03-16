@@ -8,7 +8,7 @@ CMD ["/sbin/my_init"]
 
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
-RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" && apt-get clean
+#RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" && apt-get clean
 
 
 
