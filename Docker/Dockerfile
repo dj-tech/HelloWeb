@@ -8,6 +8,7 @@ CMD ["/sbin/my_init"]
 
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" && apt-get clean
 
 
 
@@ -29,7 +30,7 @@ RUN rake db:setup
 # New crontab:
 USER root
 COPY crontab /etc/crontab
-COPY update-pinw.sh /etc/my_init.d/10_update_pinw.sh
+COPY update-pinw.sh /usr/local/bin/update_pinw.sh
 # Pinw cron jobs:
 USER app
 RUN whenever -w
@@ -39,7 +40,6 @@ USER root
 RUN rm /etc/nginx/sites-enabled/default
 COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 
-RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" && apt-get clean
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 
 EXPOSE 80
