@@ -29,7 +29,7 @@ RUN rake db:setup
 # New crontab:
 USER root
 COPY crontab /etc/crontab
-COPY update_pinw.sh /etc/my_init.d/10_update_pinw.sh
+COPY update-pinw.sh /etc/my_init.d/10_update_pinw.sh
 # Pinw cron jobs:
 USER app
 RUN whenever -w
