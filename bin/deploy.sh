@@ -12,6 +12,5 @@ done
 echo "Starting container pinw.${v} as $PINW_NAME"
 docker run -d -e VIRTUAL_HOST=$PINW_NAME -v /home/pinw/pinw-data:/data --name "pinw" algolab/pinw:${v}
 
-# Cleanup unused containers and images
-docker rm $(docker ps -a -q)
+# Cleanup unused images
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
