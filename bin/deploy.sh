@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-#cd ~/pinw-deploy/Docker/
+cd ~/pinw-deploy/Docker/
 v=`date +%FH%H%M`
 
 docker build -t algolab/pinw:${v} .
