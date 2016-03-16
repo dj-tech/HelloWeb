@@ -8,16 +8,12 @@ CMD ["/sbin/my_init"]
 
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
-#RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" && apt-get clean
-
-
 
 # Get PInW
 USER app
 WORKDIR /home/app
 RUN git clone https://github.com/AlgoLab/pinw
 RUN mkdir data
-VOLUME /home/app/data
 WORKDIR /home/app/pinw
 ENV RACK_ENV production
 
