@@ -10,7 +10,7 @@ do
     docker rm -f $cont
 done
 echo "Starting container pinw.${v} as $PINW_NAME"
-docker run -d -e VIRTUAL_HOST=$PINW_NAME -v /home/pinw/pinw-data:/data --name "pinw" algolab/pinw:${v}
+docker run -d -e VIRTUAL_HOST=$PINW_NAME -v /home/app/pinw-data:/data --name "pinw" algolab/pinw:${v}
 
 # Cleanup unused images
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
