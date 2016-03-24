@@ -1,0 +1,7 @@
+# Directory containing the pinw project
+#
+pinw_dir_dir=~/pinw_main/pinw
+
+# Directory containing the data. This directory is shared with the container
+#
+pinw_data_dir=~/pinw_main/data

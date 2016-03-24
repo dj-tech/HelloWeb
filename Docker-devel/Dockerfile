@@ -11,7 +11,7 @@ CMD ["/sbin/my_init"]
 RUN rm -f /etc/service/nginx/down
 
 
-# Get PInW
+# Get and configure Pinw
 USER app
 WORKDIR /home/app
 RUN git clone https://github.com/AlgoLab/pinw
@@ -19,6 +19,8 @@ WORKDIR /home/app/pinw
 
 USER root
 RUN bundle install
+USER app
+RUN rake db:setup
 
 # Set Development environment
 ENV RACK_ENV development
@@ -45,10 +47,6 @@ COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 WORKDIR /home/app/pinw
 RUN rm -r *
 
-
 WORKDIR /pinw
-
-
-
 
 EXPOSE 80
