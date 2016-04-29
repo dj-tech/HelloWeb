@@ -2,7 +2,6 @@ FROM phusion/passenger-ruby22:0.9.18
 
 # Set correct environment variables.
 ENV HOME /root
-VOLUME /data
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
 
