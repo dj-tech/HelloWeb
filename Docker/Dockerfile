@@ -39,7 +39,7 @@ COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 
 EXPOSE 80
 
-COPY user-mapping.sh /usr/local/sbin
-RUN  chmod u+x /usr/local/sbin/user-mapping.sh
+COPY inituidgid.sh /usr/local/sbin
+RUN  chmod u+x /usr/local/sbin/inituidgid.sh
 
-ENTRYPOINT ["/usr/local/sbin/user-mapping.sh"]
+ENTRYPOINT ["/usr/local/sbin/inituidgid.sh"]
