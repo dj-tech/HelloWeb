@@ -9,8 +9,13 @@ for cont in `docker ps -f name=pinw -q`
 do
     docker rm -f $cont
 done
+
+echo -n "Checking if pinwnet network exists..."
+docker network ls | grep pinwnet || docker network create --subnet=172.18.10.0/24 pinwnet
+echo "done"
+
 echo "Starting container pinw.${v} as $PINW_NAME"
-docker run -d -e VIRTUAL_HOST=$PINW_NAME -v ~/pinw-data:/home/app/data --name "pinw" algolab/pinw:${v}
+docker run -d  -v ~/pinw-data:/home/app/data --name "pinw" --net pinwnet --ip 172.18.10.10 algolab/pinw:${v}
 
 # Cleanup unused images
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
