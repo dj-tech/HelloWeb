@@ -38,3 +38,8 @@ COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 
 EXPOSE 80
+
+COPY user-mapping.sh /usr/local/sbin
+RUN  chmod u+x /usr/local/sbin/user-mapping.sh
+
+ENTRYPOINT ["/usr/local/sbin/user-mapping.sh"]

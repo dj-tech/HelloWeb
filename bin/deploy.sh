@@ -15,7 +15,7 @@ docker network ls | grep pinwnet || docker network create --subnet=172.18.10.0/2
 echo "done"
 
 echo "Starting container pinw.${v} as $PINW_NAME"
-docker run -d  -v ~/pinw-data:/home/app/data --name "pinw" --net pinwnet --ip 172.18.10.10 algolab/pinw:${v}
+docker run -d  -v ~/pinw-data:/home/app/data --name "pinw" --net pinwnet --ip 172.18.10.10  APP_UID=$(id -u) -e APP_GID=$(id -g)  algolab/pinw:${v}
 
 # Cleanup unused images
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
