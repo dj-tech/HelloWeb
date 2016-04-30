@@ -19,9 +19,6 @@ ENV RACK_ENV production
 USER root
 RUN bundle install
 
-USER app
-RUN rake db:setup
-
 # New crontab:
 USER root
 COPY crontab /etc/crontab

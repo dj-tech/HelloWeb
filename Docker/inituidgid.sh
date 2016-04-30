@@ -26,10 +26,4 @@ chown -R "$APP_UID:$APP_GID" /home/app
 groupmod -g "$APP_GID" app
 usermod -u "$APP_UID" -g "$APP_GID" app
 
-cd /tmp
-mv /home/app /home/app2
-cp -dpR /home/app2 /home/app
-rm -rf /home/app2
-
-
-passenger-config restart-app /
+test -s /home/app/data/db/pinw.db || sudo -u app RACK_ENV=production rake db:setup
