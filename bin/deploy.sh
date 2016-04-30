@@ -16,6 +16,7 @@ echo "done"
 
 echo "Starting container pinw.${v} as $PINW_NAME"
 docker run -d  -v ~/pinw-data:/home/app/data --name "pinw" --net pinwnet --ip 172.18.10.10  -e APP_UID=$(id -u) -e APP_GID=$(id -g)  algolab/pinw:${v}
+docker exec pinw /usr/local/sbin/inituidgid.sh
 
 # Cleanup unused images
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")

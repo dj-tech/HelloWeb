@@ -42,4 +42,3 @@ EXPOSE 80
 COPY inituidgid.sh /usr/local/sbin
 RUN  chmod u+x /usr/local/sbin/inituidgid.sh
 
-ENTRYPOINT ["/usr/local/sbin/inituidgid.sh"]
