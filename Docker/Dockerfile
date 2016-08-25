@@ -1,3 +1,6 @@
+FROM docker:1.12
+FROM wordpress:4.6
+FROM owncloud:9.1.0
 FROM phusion/passenger-ruby22:0.9.18
 
 # Set correct environment variables.
@@ -33,6 +36,10 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
+
+# Add Wordpress and Owncloud.
+RUN docker run -d -p 80:80 owncloud:8.1
+RUN docker run --name some-wordpress --link some-mysql:mysql -p 8080:80 -d wordpress
 
 EXPOSE 80
 
